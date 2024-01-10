@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1704859140084" clover="3.2.0">
+  <project timestamp="1704859140084" name="All files">
+    <metrics statements="13" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2" elements="15" coveredelements="15" complexity="0" loc="13" ncloc="13" packages="1" files="1" classes="1"/>
+    <file name="repository.ts" path="/Users/rafaeloliveiragalvaodossantos/codeme/raizen/src/modules/vehicles/repository.ts">
+      <metrics statements="13" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <line num="1" count="1" type="stmt"/>
+      <line num="4" count="1" type="stmt"/>
+      <line num="5" count="3" type="stmt"/>
+      <line num="6" count="3" type="stmt"/>
+      <line num="7" count="3" type="stmt"/>
+      <line num="9" count="3" type="stmt"/>
+      <line num="16" count="3" type="stmt"/>
+      <line num="17" count="3" type="stmt"/>
+      <line num="20" count="1" type="stmt"/>
+      <line num="21" count="2" type="stmt"/>
+      <line num="23" count="2" type="stmt"/>
+      <line num="28" count="2" type="stmt"/>
+      <line num="29" count="2" type="stmt"/>
+    </file>
+  </project>
+</coverage>
