@@ -1,5 +1,5 @@
 import * as repository from '../../../src/modules/vehicles/repository';
-import { VehicleInput, VehicleUpdate } from '../../../src/modules/vehicles/schema';
+import { VehicleUpdate } from '../../../src/modules/vehicles/schema';
 import { createVehicleInput } from '../../factories/vehicle';
 
 describe('VehiclesRepository', () => {
@@ -36,11 +36,7 @@ describe('VehiclesRepository', () => {
     })
 
     it('should returns instance of vehicle', async () => {
-        const vehicle: VehicleInput = {
-            brand: 'Ferrari',
-            plate: 'ABC-1234',
-            type: 'car',
-        };
+        const vehicle = createVehicleInput();
 
         const vehicleCreated = await repository.createVehicle(vehicle);
 
@@ -83,6 +79,18 @@ describe('VehiclesRepository', () => {
 
         expect(vehicleGet).toHaveProperty('id');
         expect(vehicleGet.plate).toBe(vehicleCreated.plate);
+    })
+
+    it('should find all vehicles', async () => {
+        const vehicle = createVehicleInput();
+
+        const vehicleCreated = await repository.createVehicle(vehicle);
+
+        expect(vehicleCreated).toHaveProperty('id');
+
+        const vehicles = await repository.getVehicles();
+
+        expect(vehicles.length).toBe(1);
     })
 
     it('should return an error if updating a non-existent vehicle', async () => {
