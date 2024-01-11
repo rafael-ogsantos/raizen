@@ -2,8 +2,9 @@ const knexfile = {
   development: {
     client: 'mysql',
     connection: {
-      user: 'root',
-      password: 'root',
+      host: 'localhost',
+      user: 'raizen',
+      password: 'raizen',
       database: 'raizen',
       port: 33006,
     },
@@ -21,15 +22,17 @@ const knexfile = {
   },
 
   production: {
-    client: 'pg',
-    connection: process.env.DATABASE_URL,
-    pool: {
-      min: 2,
-      max: 10
+    client: 'mysql',
+    connection: {
+      host: 'mysql',
+      user: 'raizen',
+      password: 'raizen',
+      database: 'raizen',
+      port: 33006,
     },
     migrations: {
-      tableName: 'knex_migrations'
-    }
+      directory: './migrations'
+    },
   }
 }
 
