@@ -26,3 +26,6 @@ export const getVehicle = async (id: string): Promise<Vehicle> => {
     return await repository.getVehicle(id);
 }
 
+export const getVehicles = async (): Promise<Vehicle[]> => {
+    return await repository.getVehicles();
+}

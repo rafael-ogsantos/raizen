@@ -18,11 +18,16 @@ export const createVehicle = async (vehicle: VehicleInput): Promise<Vehicle> => 
 }
 
 export const getVehicle = async (id: string): Promise<Vehicle> => {
-    try {
-        return await knex('vehicles').where({ id }).first();
-    } catch (error) {
+    const vehicle = await knex('vehicles').where({ id }).first();
+    if (!vehicle) {
         throw new Error('Vehicle not found');
     }
+
+    return vehicle;
+}
+
+export const getVehicles = async (): Promise<Vehicle[]> => {
+    return knex('vehicles').select('*');
 }
 
 export const getVehicleByPlate = async (plate: string): Promise<Vehicle> => {
@@ -50,10 +55,12 @@ export const updateVehicle = async (id: string, vehicle: Partial<Vehicle>): Prom
 } 
 
 export const deleteVehicle = async (id: string): Promise<void> => {
-    const deletedCount = await knex('vehicles').where({ id }).del();
-    if (deletedCount === 0) {
+    const vehicleExists = await getVehicle(id);
+    if (!vehicleExists) {
         throw new Error('Vehicle not found');
     }
+    
+    await knex('vehicles').where({ id }).del();
 }
 
 export const clear = async (): Promise<void> => {
