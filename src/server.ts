@@ -3,8 +3,10 @@ import express from 'express';
 import vehicleRouter from './presentation/vehicles/router';
 
 const app = express();
+process.on('uncaughtException', function (err) {
+  console.log(err);
+});
 
-// Configuração do Express
 app.use(express.json());
 
 app.use('/vehicles', vehicleRouter);
