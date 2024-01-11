@@ -1,33 +1,29 @@
-version: '3'
+version: '3.8'
 
 services:
   app:
     build: .
-    command: npm run dev
+    command: 'npm run dev'
+    restart: on-failure
     volumes:
       - .:/app
     ports:
       - "3000:3000"
     depends_on:
-      - db
+      - mysql
     networks:
-      - app-network
+      - app-network-raizen
 
-  db:
+  mysql:
     build: ./.docker/mysql
+    command: --default-authentication-plugin=mysql_native_password
     restart: always
     tty: true
     ports:
       - "33006:3306"
-    volumes:
-      - ./.docker/dbdata:/var/lib/mysql
-      - ./.docker/mysql:/docker-entrypoint-initdb.d
-    environment:
-      - MYSQL_DATABASE=raizen
-      - MYSQL_ROOT_PASSWORD=root
     networks:
-      - app-network
+      - app-network-raizen
 
 networks:
-  app-network:
+  app-network-raizen:
     driver: bridge
